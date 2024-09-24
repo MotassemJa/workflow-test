@@ -5,13 +5,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,9 +19,9 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+      - uses: actions/checkout@v4
+      - name: Prepare and Build
+        uses: ./.github/workflows/prepare.yml
 
-    - name: Prepare and Build
-      uses: ./.github/workflows/prepare.yml
-
-    - name: Run Tests
-      run: npm test
+      - name: Run Tests
+        run: npm test
